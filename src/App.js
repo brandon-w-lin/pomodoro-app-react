@@ -1,4 +1,3 @@
-import "./App.css";
 import Timer from "./Timer";
 import Notepad from "./Notepad";
 import React, { useState, useRef } from "react";
@@ -20,7 +19,7 @@ function App() {
   return (
     <>
       <Timer />
-      <Notepad thoughts={thoughts} />
+
       <form>
         <input
           ref={thoughtRef}
@@ -30,6 +29,7 @@ function App() {
       </form>
       <button onClick={handleAddThought}>Add note</button>
       <button>Clear notes</button>
+      <Notepad thoughts={thoughts} />
     </>
   );
 }

@@ -5,6 +5,7 @@ export default function thought({ thought }) {
     <div>
       {thought}
       <button>Remove</button>
+      <button>Update</button>
     </div>
   );
 }
