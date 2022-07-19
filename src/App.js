@@ -3,7 +3,11 @@ import Notepad from "./Notepad";
 import React, { useState, useRef } from "react";
 
 function App() {
-  const [thoughts, setThoughts] = useState(["thought 1", "thought 2"]);
+  const [thoughts, setThoughts] = useState([
+    "thought 1",
+    "thought 2",
+    "thought 3",
+  ]);
   const thoughtRef = useRef();
 
   function handleAddThought(e) {
@@ -14,6 +18,13 @@ function App() {
     });
     console.log(thought);
     thoughtRef.current.value = null;
+  }
+
+  function handleRemoveThought(index) {
+    setThoughts((prevThoughts) => {
+      let newThoughts = prevThoughts.filter((_thought, i) => i !== index);
+      return newThoughts;
+    });
   }
 
   return (
@@ -28,8 +39,9 @@ function App() {
         ></input>
       </form>
       <button onClick={handleAddThought}>Add note</button>
+      {/* <button onClick={handleRemoveThought}>Remove thought</button> */}
       <button>Clear notes</button>
-      <Notepad thoughts={thoughts} />
+      <Notepad thoughts={thoughts} removeThought={handleRemoveThought} />
     </>
   );
 }

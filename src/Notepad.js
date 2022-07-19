@@ -1,8 +1,17 @@
 import React from "react";
 import Thought from "./thought";
 
-export default function Notepad({ thoughts }) {
-  return thoughts.map((thought) => {
-    return <Thought key={thought} thought={thought} />;
+export default function Notepad(props) {
+  const { thoughts, removeThought } = props;
+
+  return thoughts.map((thought, index) => {
+    return (
+      <Thought
+        key={index}
+        thought={thought}
+        index={index}
+        removeThought={() => removeThought(index)}
+      />
+    );
   });
 }
