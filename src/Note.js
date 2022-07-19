@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function thought(props) {
-  const { thought, index, removeThought } = props;
+export default function note(props) {
+  const { note, index, deleteNote } = props;
 
   // function handleRemove(index) {
   //   console.log("trying to remove" + index);
@@ -9,8 +9,8 @@ export default function thought(props) {
 
   return (
     <div>
-      {thought}
-      <button onClick={() => removeThought(index)}>Remove</button>
+      {note}
+      <button onClick={() => deleteNote(index)}>Delete</button>
       <button>Update</button>
     </div>
   );

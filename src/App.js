@@ -3,27 +3,29 @@ import Notepad from "./Notepad";
 import React, { useState, useRef } from "react";
 
 function App() {
-  const [thoughts, setThoughts] = useState([
-    "thought 1",
-    "thought 2",
-    "thought 3",
-  ]);
-  const thoughtRef = useRef();
+  const [notes, setNotes] = useState(["thought 1", "thought 2", "thought 3"]);
+  const noteRef = useRef();
 
-  function handleAddThought(e) {
-    const thought = thoughtRef.current.value;
-    if (thought === "") return;
-    setThoughts((prevThoughts) => {
-      return [...prevThoughts, thought];
+  function handleAddNote(e) {
+    const note = noteRef.current.value;
+    if (note === "") return;
+    setNotes((prevNote) => {
+      return [...prevNote, note];
     });
-    console.log(thought);
-    thoughtRef.current.value = null;
+    console.log(note);
+    noteRef.current.value = null;
   }
 
-  function handleRemoveThought(index) {
-    setThoughts((prevThoughts) => {
-      let newThoughts = prevThoughts.filter((_thought, i) => i !== index);
-      return newThoughts;
+  function handleDeleteNote(index) {
+    setNotes((prevNotes) => {
+      let newNotes = prevNotes.filter((_note, i) => i !== index);
+      return newNotes;
+    });
+  }
+
+  function handleClearNotes() {
+    setNotes(() => {
+      return [];
     });
   }
 
@@ -32,16 +34,11 @@ function App() {
       <Timer />
 
       <form>
-        <input
-          ref={thoughtRef}
-          type="text"
-          placeholder="Your thoughts..."
-        ></input>
+        <input ref={noteRef} type="text" placeholder="Enter note..."></input>
       </form>
-      <button onClick={handleAddThought}>Add note</button>
-      {/* <button onClick={handleRemoveThought}>Remove thought</button> */}
-      <button>Clear notes</button>
-      <Notepad thoughts={thoughts} removeThought={handleRemoveThought} />
+      <button onClick={handleAddNote}>Add note</button>
+      <button onClick={handleClearNotes}>Clear notes</button>
+      <Notepad notes={notes} deleteNote={handleDeleteNote} />
     </>
   );
 }

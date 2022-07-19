@@ -1,16 +1,16 @@
 import React from "react";
-import Thought from "./thought";
+import Note from "./Note";
 
 export default function Notepad(props) {
-  const { thoughts, removeThought } = props;
+  const { notes, deleteNote } = props;
 
-  return thoughts.map((thought, index) => {
+  return notes.map((note, index) => {
     return (
-      <Thought
+      <Note
         key={index}
-        thought={thought}
+        note={note}
         index={index}
-        removeThought={() => removeThought(index)}
+        deleteNote={() => deleteNote(index)}
       />
     );
   });
